@@ -1,0 +1,220 @@
+<DOCTYPE html>
+<head>
+	<title> Générateur de signature Provélo </title>
+	<meta charset="UTF-8">
+	<style>
+
+	
+	h1 {
+		color: navy;
+		margin-left: 40px;
+	}
+	h5#h5-résultat{
+		background-color: rgba(124,32,112,0.4);
+	}
+	div.choix{
+		margin: 5px;
+		padding: 3px;  
+	}
+	div.source {
+		margin: 5px;
+		border: 2px;
+                background-color: rgba(124,32,112,0.4);
+
+	}
+
+	div.résultat  {
+		display: block;
+		background-color: white;
+		border: 2px;
+		border-style: dotted;
+		padding: 3px;
+		margin: 5px;
+	}
+	.choix-wrapper {
+		background-color: rgba(0,12,12,0.4);
+	}
+		
+	</style>
+	<script>
+
+		function updateSource(){
+		var sourceSignature = document.getElementById("résultat").innerHTML.replace(/\t+/g, "");
+		document.getElementById("source").value = sourceSignature;
+		}
+
+		function updateNom(){
+		var txtNom = document.getElementById("form-nom").value;
+		document.getElementById("signature-nom").textContent = txtNom;
+		updateSource()
+		}
+
+		function updateFonction(){
+                var txtFonction = document.getElementById("form-fonction").value;
+                document.getElementById("signature-fonction").textContent = txtFonction;
+		updateSource()
+		}
+
+               function updateNumero(){
+                var txtNumero = document.getElementById("form-numero").value;
+                document.getElementById("signature-numero").textContent = txtNumero;
+                updateSource()
+                }
+
+
+               function updateAdresse(){
+                var txtAdresse = document.querySelector('input[name = "form-adresse"]:checked').value;
+                document.getElementById("signature-adresse").innerHTML = txtAdresse;
+                updateSource()
+                }
+		
+		function ajouterLogo(item, index){
+			var elementAjouter = item.nextElementSibling.innerHTML;
+			var divLogos = document.getElementById("wrapper-logos");
+			divLogos.innerHTML = divLogos.innerHTML + elementAjouter;
+		
+		}
+
+
+		function addSelectedLogos(){
+		//D'abord on choppe la sélection
+		var checkboxes = document.getElementsByName("logo");
+			var selection = [];
+			for (var i=0; i<checkboxes.length; i++){
+				if (checkboxes[i].checked){
+				selection.push(checkboxes[i]);
+				}
+			}
+		console.log(selection);
+		//Puis pour cette sélection, on ajoute tous les div suivant la checkbox
+		selection.forEach(ajouterLogo);
+		}
+
+
+
+// L'ID a envoyé est celui du noeud a supprimer
+//		function retirerLogo(id){
+//			var elementSupprimer = document.getElementById(id);
+//			elementSupprimer.parentElement.removeChild(elementSupprimer)
+//		}
+
+		function updateLogos(){
+		
+		// On va vider le div des logos
+		// Pour chacun des logos sélectionnés, on va ajouter le div en question, qui est celui qui suit la checkbox (-> nextElementSibling)
+
+			var divLogos = document.getElementById("wrapper-logos");
+			while (divLogos.firstChild) {
+				divLogos.removeChild(divLogos.firstChild);
+				}
+			addSelectedLogos();
+	                updateSource();
+		}
+
+                updateSource()
+		
+	</script>
+</head>
+<body>
+	<h1>Générateur de signature Pro Velo </h1>
+	<div class="choix-wrapper" style="margin:5px">
+		<div class="choix" name="choix-nom">
+		Introduire ici son nom 
+		<input type="text" id="form-nom" value="Jérémie Parisel" oninput="updateNom()" />
+		</div>
+                <div class="choix" id="choix-fonction">
+		Introduire ici sa fonction:
+		<input type="text" id="form-fonction" value="Expert ICT" oninput="updateFonction()">
+                </div>
+	        <div class="choix" name="choix-adresse">
+		Choisir une implantation pour l'adresse qui apparaitra dans la signature: <br />
+		
+			<input type="radio" name="form-adresse" value="Pro Velo asbl / vzw <br /> Londenstraat 15 rue de Londres <br />Bruxelles 1050 Brussel" checked onchange="updateAdresse()"> Bruxelles
+			<input type="radio" name="form-adresse" value="Pro Velo Hainaut <br />Point vélo de la gare de Mons <br />Boulevard Charles Quint 35 - 7000 Monsi" onchange="updateAdresse()"> Mons 
+			<input type="radio" name="form-adresse" value="Pro Velo Liège <br />Point vélo de la gare de Liège-Guillemins <br />Place des Guillemins 2 - 4000 Liège" onchange="updateAdresse()"> Liège 
+                        <input type="radio" name="form-adresse" value="Pro Velo Namur <br /> Point vélo de la gare de Namur <br /> Place de la Station 1 - 5000 Namur" onchange="updateAdresse()"> Namur
+                        <input type="radio" name="form-adresse" value="Pro Velo Brabant wallon <br />Point vélo de la gare d’Ottignies<br />Place de la Gare 2 - 1340 Ottignies" onchange="updateAdresse()"> Ottignies
+
+	        </div>
+	        <div class="choix" name="choix-telephone">
+                Introduire ici son numéro de téléphone
+                <input type="text" id="form-numero" value="+32 484 401 415" oninput="updateNumero()">
+		</div>
+	        <div class="choix" name="choix-logos">
+		Choisissez les logos que vous voulez mettre dans votre signature: <br />
+			<input type="checkbox" name="logo" id="form-logo-pv-standard" value="PVprovelo" checked onclick="updateLogos()">Provelo Standard
+			<div id="div-logo-pv" style="display:none">
+				<div class="logoPV" style="float: left;">
+                                <img style="height: 150px;"src="http://cloud.provelo.org/owncloud/index.php/s/ujH8qBvukEFxfXy/download" />
+                        	</div>
+			</div>
+			<input type="checkbox" name="logo" id="form-logo-petite-ceinture" value="PetiteCeinture" checked onclick="updateLogos()">Petite Ceinture
+			<div id="div-logo-petite-ceinture" style="display:none">
+				<div class="logoCampagne" style="float: left;">
+                                <a href="http://petite-ceinture.brussels">
+                                <img style="height: 150px;" src="http://cloud.provelo.org/owncloud/index.php/s/KWX6HdOw85TbFKa/download" />
+                        	</a>
+	                	</div>
+	        	</div>
+		</div>
+	</div>
+	<div class="résultat" id="résultat">
+
+		<div class="signature" style="padding-top: 1em; font-family: Calibri;" id="signature-full">
+			<div class="wrapper-text-et-images" style="width: 100%;">
+			<div class="texte" style="float: left; border: 0px;">
+			<span class="nom" style="font-size: 1.1em; font-variant: small-caps;" id="signature-nom">
+			 Jérémie Parisel
+			</span><br />
+			<span class="fonction" id="signature-fonction"> Expert ICT
+			</span> <br />
+			<span class="numero" id="signature-numero">
+			+32 (0)484 401 415</span><br />
+			----------------------------------<br />
+			<span class="adresse" id="signature-adresse"> 
+			Pro Velo asbl / vzw <br />
+			Londenstraat 15 rue de Londres<br /> 
+			Bruxelles 1050 Brussel<br /> 
+			</span>
+			</div>
+		</div>
+		<div class=wrapper-logos id="wrapper-logos">
+			<div id="logoPV" class="logo" style="float: left;">
+				<img style="height: 150px;"src="http://cloud.provelo.org/owncloud/index.php/s/ujH8qBvukEFxfXy/download" />
+			</div>
+			<div id="logoCampagne" class"logo" style="float: left;">
+				<a href="http://petite-ceinture.brussels"> 
+					<img style="height: 150px;" src="http://cloud.provelo.org/owncloud/index.php/s/KWX6HdOw85TbFKa/download" /> 
+			</a>
+		</div>
+		</div>
+		</div>
+		
+
+		<div class="liens" style="clear: left;">
+			<a style="text-decoration: none;" href="http://www.provelo.org">
+				<img style="height: 30px;" src="http://cloud.provelo.org/owncloud/index.php/s/ujH8qBvukEFxfXy/download" /> 
+			</a> 
+			<a style="text-decoration: none;" href="http://www.facebook.com/provelo"> 
+				<img style="height: 30px;" src="http://cloud.provelo.org/owncloud/index.php/s/9IODmT5oza4rsDJ/download"/> 
+			</a> 
+			<a style="text-decoration: none;" href="http://twitter.com/provelo_be">
+				<img style="height: 30px;" src="http://cloud.provelo.org/owncloud/index.php/s/fV4JIhjlV9cCoZX/download" /> 
+			</a> 
+			<a style="text-decoration: none;" href="https://www.instagram.com/provelo_asbl.vzw/"> 
+				<img style="height: 30px;" src="http://cloud.provelo.org/owncloud/index.php/s/7ZAjf4SEas0smPH/download" /> 
+			</a>
+		</div>
+
+	</div>
+	<div class="source" style="padding:5px; margin 5px">
+	Ici s'affichera ce qu'il faut copier dans Thunderbird: <br >
+	<textarea id="source" readonly=true cols="110" rows="30" value="Modifier le champ avec votre nom etc..." >
+	</textarea>
+	</div>
+
+</body>
+
+
+
+
