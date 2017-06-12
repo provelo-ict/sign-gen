@@ -4,7 +4,20 @@
 	<meta charset="UTF-8">
 	<style>
 
-	
+	.copiedtext {
+  		position: absolute;
+  		left: 0; top: 0; right: 0;
+		text-align: center;
+		opacity: 0;
+		transform: translateY(-1em);
+		color: #000;
+		transition: all .500s;
+		}
+	.copied .copiedtext {
+		opacity: 1;
+		transform: translateY(-2em);
+		}
+
 	h1 {
 		color: navy;
 		margin-left: 40px;
@@ -20,7 +33,11 @@
 		margin: 5px;
 		border: 2px;
                 background-color: rgba(124,32,112,0.4);
+		float: left;
 
+	}
+	div.button {
+		float:left;	
 	}
 
 	div.résultat  {
@@ -34,6 +51,25 @@
 	.choix-wrapper {
 		background-color: rgba(0,12,12,0.4);
 	}
+	
+	button {
+		font-size: 1em;
+		font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  		position: relative;
+		padding: 8px 20px;
+		border: 0;
+		font-size: 0.835em;
+		text-transform: uppercase;
+		letter-spacing: 0.125em;
+		font-weight: bold;
+		color: #FFF;
+		background-color: navy;
+		transition: background .275s;
+}
+button:hover,
+button:focus {
+  background-color: lightblue;
+}
 		
 	</style>
 	<script>
@@ -207,10 +243,42 @@
 		</div>
 
 	</div>
-	<div class="source" style="padding:5px; margin 5px">
+	<div class="source" >
 	Ici s'affichera ce qu'il faut copier dans Thunderbird: <br >
+	<div classe="button">
+		<button id="copy" type="button">Copier dans le presse-papier <span class="copiedtext"aria-hidden="true">Copié!</span></button>
+	</div>
 	<textarea id="source" readonly=true cols="110" rows="30" value="Modifier le champ avec votre nom etc..." >
 	</textarea>
 	</div>
+
+<script>
+
+// Boutton copie - source https://codepen.io/CreativeJuiz/pen/rLPVkP
+var toCopy  = document.getElementById( 'source' ),
+    btnCopy = document.getElementById( 'copy' );
+
+btnCopy.addEventListener( 'click', function(){
+  toCopy.select();
+  
+  if ( document.execCommand( 'copy' ) ) {
+      btnCopy.classList.add( 'copied' );
+    
+      var temp = setInterval( function(){
+        btnCopy.classList.remove( 'copied' );
+        clearInterval(temp);
+      }, 600 );
+    
+  } else {
+    console.info( 'document.execCommand went wrong…' )
+  }
+  
+  return false;
+} );
+
+
+
+
+</script>
 
 </body>
