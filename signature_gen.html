@@ -87,13 +87,15 @@ button:focus {
 
 		function updateFonction(){
                 var txtFonction = document.getElementById("form-fonction").value;
-                document.getElementById("signature-fonction").textContent = txtFonction;
+		txtFonction = txtFonction.replace(/[\n\r]/g, '<br>');
+                document.getElementById("signature-fonction").innerHTML = txtFonction;
 		updateSource()
 		}
 
                function updateNumero(){
                 var txtNumero = document.getElementById("form-numero").value;
-                document.getElementById("signature-numero").textContent = txtNumero;
+		txtNumero= txtNumero.replace(/[\n\r]/g, '<br>');
+                document.getElementById("signature-numero").innerHTML = txtNumero;
                 updateSource()
                 }
 
@@ -121,7 +123,6 @@ button:focus {
 				selection.push(checkboxes[i]);
 				}
 			}
-		console.log(selection);
 		//Puis pour cette sélection, on ajoute tous les div suivant la checkbox
 		selection.forEach(ajouterLogo);
 		}
@@ -146,8 +147,6 @@ button:focus {
 			addSelectedLogos();
 	                updateSource();
 		}
-
-                updateSource()
 		
 	</script>
 </head>
@@ -159,8 +158,11 @@ button:focus {
 		<input type="text" id="form-nom" value="Jérémie Parisel" oninput="updateNom()" />
 		</div>
                 <div class="choix" id="choix-fonction">
-		Introduire ici sa fonction:
-		<input type="text" id="form-fonction" value="Expert ICT" oninput="updateFonction()">
+		Introduire ici sa fonction, éventuellement suivi de son régime horaire:
+		<textarea id="form-fonction" rows="2" maxlength="80" cols="80" oninput="updateFonction()">
+Expert ICT
+ICT expert
+4/5 le vendredi</textarea>
                 </div>
 	        <div class="choix" name="choix-adresse">
 		Choisir une implantation pour l'adresse qui apparaitra dans la signature: <br />
@@ -174,14 +176,17 @@ button:focus {
 	        </div>
 	        <div class="choix" name="choix-telephone">
                 Introduire ici son numéro de téléphone
-                <input type="text" id="form-numero" value="+32 484 401 415" oninput="updateNumero()">
+                <textarea id="form-numero" rows="2" maxlength="80" cols="17" oninput="updateNumero()">+32 484 401 415
++32 (0)2 640 50 14</textarea>
 		</div>
 	        <div class="choix" name="choix-logos">
 		Choisissez les logos que vous voulez mettre dans votre signature: <br />
 			<input type="checkbox" name="logo" id="form-logo-pv-standard" value="PVprovelo" checked onclick="updateLogos()">Provelo Standard
 			<div id="div-logo-pv" style="display:none">
 				<div class="logoPV" style="float: left;">
+				<a href="https://provelo.org">
                                 <img style="height: 150px;"src="https://provelo.org/imgsignaturesmail/2017/ProVelo.png" />
+				</a>
                         	</div>
                         </div>
 
@@ -205,60 +210,30 @@ button:focus {
 
                         <input type="checkbox" name="logo" id="form-atelier-mobile" value="AtelierMobile" onclick="updateLogos()">Atelier Mobile
                         <div id="div-logo-atelier-mobile" style="display:none">
-                                <div class="logoCampagne" style="float: left;">
+                        	<a href="https://provelo.org/fr/atelier-mobile-reparation-velo-domicile-liege">
+			        <div class="logoCampagne" style="float: left;">
                                 <img style="height: 150px;" src="https://provelo.org/imgsignaturesmail/2017/ateliermobile.png" />
                                 </div>
+				</a>
                         </div>
 
-
-                        <input type="checkbox" name="logo" id="form-logo-services" value="Services" onclick="updateLogos()">Services
-                        <div id="div-logo-services" style="display:none">
+                        <input type="checkbox" name="logo" id="form-bike-experience" value="be_16" onclick="updateLogos()">Bike Experience
+                        <div id="div-logo-bike-experience" style="display:none">
+				<a href="http://bikeexperience.brussels">
                                 <div class="logoCampagne" style="float: left;">
-                                <img style="height: 150px;" src="https://provelo.org/imgsignaturesmail/2017/ProVelo_Service.png" />
-                                </div>
+                                <img style="height: 150px;" src="https://provelo.org/imgsignaturesmail/2017/be_16.png" />
+                                </a>
+				</div>
                         </div>
 
-
-                        <input type="checkbox" name="logo" id="form-logo-tour" value="PVTour" onclick="updateLogos()">Tour
-                        <div id="div-logo-Tour" style="display:none">
-                                <div class="logoCampagne" style="float: left;">
-                                <img style="height: 150px;" src="https://provelo.org/imgsignaturesmail/2017/ProVelo_Tour.png" />
-                                </div>
-			</div>
-
-                        <input type="checkbox" name="logo" id="form-logo-RD" value="RD" onclick="updateLogos()">RD
-                        <div id="div-logo-RD" style="display:none">
-                                <div class="logoCampagne" style="float: left;">
-                                <img style="height: 150px;" src="https://provelo.org/imgsignaturesmail/2017/ProVelo_RD.png" />
-                                </div>
-                        </div>
-
-                        <input type="checkbox" name="logo" id="form-logo-event" value="PVTour" onclick="updateLogos()">Event
-                        <div id="div-logo-Tour" style="display:none">
-                                <div class="logoCampagne" style="float: left;">
-                                <img style="height: 150px;" src="https://provelo.org/imgsignaturesmail/2017/ProVelo_Event.png" />
-                                </div>
-                        </div>
-
-                        <input type="checkbox" name="logo" id="form-logo-entreprise" value="PVEntreprise" onclick="updateLogos()">Entreprise
-                        <div id="div-logo-Entreprise" style="display:none">
-                                <div class="logoCampagne" style="float: left;">
-                                <img style="height: 150px;" src="https://provelo.org/imgsignaturesmail/2017/ProVelo_Entreprise.png" />
-                                </div>
-                        </div>
-
-                        <input type="checkbox" name="logo" id="form-logo-educ" value="PVEduc" onclick="updateLogos()">Educ
-                        <div id="div-logo-Tour" style="display:none">
-                                <div class="logoCampagne" style="float: left;">
-                                <img style="height: 150px;" src="https://provelo.org/imgsignaturesmail/2017/ProVelo_Educ.png" />
-                                </div>
-                        </div>
 
 
                         <input type="checkbox" name="logo" id="form-logo-pach4bike" value="pack4bike" onclick="updateLogos()">Pack4bike
                         <div id="div-logo-Pack4bike" style="display:none">
+				<a href="https://provelo.org/fr/pack4bike"> 
                                 <div class="logoCampagne" style="float: left;">
                                 <img style="height: 150px;" src="https://provelo.org/imgsignaturesmail/2017/Pack4bike.png" />
+				</a>
                                 </div>
 			</div>
 
@@ -300,7 +275,7 @@ button:focus {
 
 		<div class="liens" style="clear: left;">
 			<a style="text-decoration: none;" href="https://provelo.org/">
-				<img style="height: 30px;" src="https://provelo.org/imgsignaturesmail/2017/ProVeloEcusson.png" /> 
+				<img style="height: 30px;" src="https://provelo.org/imgsignaturesmail/2017/ProVeloRoue.png" /> 
 			</a> 
 			<a style="text-decoration: none;" href="http://www.facebook.com/provelo"> 
 				<img style="height: 30px;" src="https://provelo.org/imgsignaturesmail/2017/Facebook.png"/> 
@@ -324,7 +299,7 @@ button:focus {
 	<div classe="button">
 		<button id="copy" type="button">Copier dans le presse-papier <span class="copiedtext"aria-hidden="true">Copié!</span></button>
 	</div>
-	<textarea id="source" readonly=true cols="110" rows="30" value="Modifier le champ avec votre nom etc..." >
+	<textarea id="source" readonly=true cols="110" rows="30">
 	</textarea>
 	</div>
 
@@ -352,8 +327,12 @@ btnCopy.addEventListener( 'click', function(){
   return false;
 } );
 
+//Update des logos et de la source en fin de chargement 
 
-
+	updateLogos();
+	updateNumero()
+	updateFonction();
+	updateSource();
 
 </script>
 
