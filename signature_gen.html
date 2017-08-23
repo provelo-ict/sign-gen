@@ -147,6 +147,18 @@ button:focus {
 			addSelectedLogos();
 	                updateSource();
 		}
+		function updateBanner(){
+		
+			var selectedBanner = document.getElementById("form-banners").value;
+			var elementAjouter = document.getElementById(selectedBanner).innerHTML;
+		        var divBanner = document.getElementById("banner");
+			divBanner.innerHTML = elementAjouter;
+			updateSource();		
+		
+
+
+		}
+
 		
 	</script>
 </head>
@@ -248,6 +260,30 @@ ICT expert
                                 </div>
 			</div>
 
+			
+			<div class="choix" name="choix-banner">
+                	Choisissez le banner à afficher
+                		<select id="form-banners" name="form-banners" oninput="updateBanner()">
+					<option value="div-banner-rien" selected="selected">Rien</option>
+
+					<option value="div-banner-bikebrussels">Bike Brussels</option>
+				</select>
+
+
+					<div class="bannerCampagne" id="div-banner-rien" style="display:none">
+						<div></div>
+					</div>
+
+		  			<div class="bannerCampagne" id="div-banner-bikebrussels" style="display:none">
+						<div>
+						<a href="https://bikebrussels.be/tickets">
+						<img src="https://provelo.org/imgsignaturesmail/bikebrusselsbanner.png" style="width:70%">
+						</a>
+						</div>
+                                        </div>
+
+                	</div>
+
 
 		</div>
 	</div>
@@ -303,6 +339,10 @@ ICT expert
 
 		</div>
 
+		<div class="banner" id="banner">
+		
+		</div>
+
 	</div>
 	<div class="source" >
 	Ici s'affichera ce qu'il faut copier dans Thunderbird: <br >
@@ -342,6 +382,7 @@ btnCopy.addEventListener( 'click', function(){
 	updateLogos();
 	updateNumero()
 	updateFonction();
+	updateBanner();
 	updateSource();
 
 </script>
