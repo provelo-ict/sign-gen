@@ -74,6 +74,23 @@ button:focus {
 	</style>
 	<script>
 
+                function remplirChamps(){
+			if (localStorage.getItem("nom") !== null){
+				document.getElementById("form-nom").value = localStorage.getItem("nom");
+			}
+			if (localStorage.getItem("fonction") !== null){
+                                document.getElementById("form-fonction").value = localStorage.getItem("fonction");
+                        }
+			if (localStorage.getItem("numero") !== null){
+                                document.getElementById("form-numero").value = localStorage.getItem("numero");
+                        }
+			if (localStorage.getItem("adresse") !== null){
+                                document.getElementById(localStorage.getItem("adresse")).checked = true ;
+                        }
+
+		}
+		
+
 		function updateSource(){
 		var sourceSignature = document.getElementById("résultat").innerHTML.replace(/\t+/g, "");
 		document.getElementById("source").value = sourceSignature;
@@ -81,12 +98,14 @@ button:focus {
 
 		function updateNom(){
 		var txtNom = document.getElementById("form-nom").value;
+		localStorage['nom']=txtNom;
 		document.getElementById("signature-nom").textContent = txtNom;
 		updateSource()
 		}
 
 		function updateFonction(){
                 var txtFonction = document.getElementById("form-fonction").value;
+ 		localStorage['fonction']=txtFonction;
 		txtFonction = txtFonction.replace(/[\n\r]/g, '<br>');
                 document.getElementById("signature-fonction").innerHTML = txtFonction;
 		updateSource()
@@ -94,6 +113,7 @@ button:focus {
 
                function updateNumero(){
                 var txtNumero = document.getElementById("form-numero").value;
+		localStorage['numero']=txtNumero;
 		txtNumero= txtNumero.replace(/[\n\r]/g, '<br>');
                 document.getElementById("signature-numero").innerHTML = txtNumero;
                 updateSource()
@@ -102,6 +122,8 @@ button:focus {
 
                function updateAdresse(){
                 var txtAdresse = document.querySelector('input[name = "form-adresse"]:checked').value;
+		var idAdresse = document.querySelector('input[name = "form-adresse"]:checked').id;
+		localStorage['adresse'] = idAdresse;
                 document.getElementById("signature-adresse").innerHTML = txtAdresse;
                 updateSource()
                 }
@@ -193,14 +215,14 @@ ICT expert
 4/5 le vendredi</textarea>
 		</div>
                 </div>
-	        <div class="choix" name="choix-adresse">
+	        <div class="choix" name="choix-adresse" id="choix-adresse">
 		Choisir une implantation pour l'adresse qui apparaitra dans la signature: <br />
 		
-			<input type="radio" name="form-adresse" value="Pro Velo asbl / vzw <br /> Londenstraat 15 rue de Londres <br />Bruxelles 1050 Brussel" checked onchange="updateAdresse()"> Bruxelles
-			<input type="radio" name="form-adresse" value="Pro Velo asbl -  Hainaut <br />Point vélo de la gare de Mons <br />Boulevard Charles Quint 35 - 7000 Monsi" onchange="updateAdresse()"> Mons 
-			<input type="radio" name="form-adresse" value="Pro Velo asbl - Liège <br />Point vélo de la gare de Liège-Guillemins <br />Place des Guillemins 2 - 4000 Liège" onchange="updateAdresse()"> Liège 
-                        <input type="radio" name="form-adresse" value="Pro Velo asbl - Namur <br /> Point vélo de la gare de Namur <br /> Place de la Station 1 - 5000 Namur" onchange="updateAdresse()"> Namur
-                        <input type="radio" name="form-adresse" value="Pro Velo asbl - Brabant wallon <br />Point vélo de la gare d’Ottignies<br />Place de la Gare 2 - 1340 Ottignies" onchange="updateAdresse()"> Ottignies
+			<input id="form-adresse-bruxelles" type="radio" name="form-adresse" value="Pro Velo asbl / vzw <br /> Londenstraat 15 rue de Londres <br />Bruxelles 1050 Brussel" checked onchange="updateAdresse()"> Bruxelles
+			<input id="form-adresse-mons" type="radio" name="form-adresse" value="Pro Velo asbl -  Hainaut <br />Point vélo de la gare de Mons <br />Boulevard Charles Quint 35 - 7000 Monsi" onchange="updateAdresse()"> Mons 
+			<input id="form-adresse-liege" type="radio" name="form-adresse" value="Pro Velo asbl - Liège <br />Point vélo de la gare de Liège-Guillemins <br />Place des Guillemins 2 - 4000 Liège" onchange="updateAdresse()"> Liège 
+                        <input id="form-adresse-namur" type="radio" name="form-adresse" value="Pro Velo asbl - Namur <br /> Point vélo de la gare de Namur <br /> Place de la Station 1 - 5000 Namur" onchange="updateAdresse()"> Namur
+                        <input id="form-adresse-bw" type="radio" name="form-adresse" value="Pro Velo asbl - Brabant wallon <br />Point vélo de la gare d’Ottignies<br />Place de la Gare 2 - 1340 Ottignies" onchange="updateAdresse()"> Ottignies
 
 	        </div>
 	        <div class="choix" name="choix-telephone">
@@ -399,6 +421,7 @@ btnCopy.addEventListener( 'click', function(){
 
 //Update des logos et de la source en fin de chargement 
 
+        remplirChamps()
 	updateLogos();
 	updateNumero()
 	updateFonction();
