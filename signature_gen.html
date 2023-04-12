@@ -216,7 +216,7 @@ Absent le vendredi pour cause de temps partiel</textarea>
 		Choisir une implantation pour l'adresse qui apparaitra dans la signature: <br />
 		
 			<input id="form-adresse-bruxelles" type="radio" name="form-adresse" value="Pro Velo asbl / vzw <br /> Londenstraat 15 rue de Londres <br />Bruxelles 1050 Brussel" checked onchange="updateAdresse()"> Bruxelles
-			<input id="form-adresse-mons" type="radio" name="form-adresse" value="Pro Velo asbl -  Hainaut <br />Point vélo de la gare de Mons <br />Boulevard Charles Quint 35 - 7000 Mons" onchange="updateAdresse()"> Mons 
+			<input id="form-adresse-mons" type="radio" name="form-adresse" value="Pro Velo asbl -  Hainaut <br />Rue de la Petite Guirlande 19 - 7000 Mons" onchange="updateAdresse()"> Mons 
 			<input id="form-adresse-liege" type="radio" name="form-adresse" value="Pro Velo asbl - Liège <br />Point vélo de la gare de Liège-Guillemins <br />Place des Guillemins 2 - 4000 Liège" onchange="updateAdresse()"> Liège 
                         <input id="form-adresse-namur" type="radio" name="form-adresse" value="Pro Velo asbl - Namur <br /> Point vélo de la gare de Namur <br /> Place de la Station 1 - 5000 Namur" onchange="updateAdresse()"> Namur
                         <input id="form-adresse-bw" type="radio" name="form-adresse" value="Pro Velo asbl - Brabant wallon <br />Point vélo de la gare d’Ottignies<br />Avenue des Combattants, 114 - 1340 Ottignies" onchange="updateAdresse()"> Ottignies
@@ -241,7 +241,7 @@ Absent le vendredi pour cause de temps partiel</textarea>
 			<input type="checkbox" name="logo" id="form-logo-pv-30-ans" value="logo-30-ans" checked onclick="updateLogos()">Provelo 30 ans
 			<div id="div-logo-pv-30-ans" style="display:none">
 				<div class="logoPV-30-ans" style="float: left;">
-				<a href="https://provelo.org">
+				<a href="https://provelo.org/30-ans">
                                 <img style="height: 150px;" src="https://signature.provelo.org/signature/images/logo-30-ans.png" height="150" alt="Logo Provelo - 30 ans. Toutes nos saluations cyclistes." moz-do-not-send="false"/>
 				</a>
                         	</div>
@@ -318,14 +318,14 @@ Absent le vendredi pour cause de temps partiel</textarea>
 				</a>
                         </div>
 
-                        <input type="checkbox" name="logo" id="form-al-30" value="al30" onclick="updateLogos()">30 ans!
+<!--                        <input type="checkbox" name="logo" id="form-al-30" value="al30" onclick="updateLogos()">30 ans!
                         <div id="div-logo-al-30" style="display:none">
                         	<a href="https://www.provelo.org/">
 			        <div class="logoCampagne" style="float: left;">
                                 <img style="height: 150px;" src="https://signature.provelo.org/signature/images/al30ans.png" height="150" alt="Pro Velo a 30 ans!" />
                                 </div>
 				</a>
-                        </div>
+			</div> -->
 
                         
 			<input type="checkbox" name="logo" id="form-bike-experience" value="be_16" onclick="updateLogos()">Bike Experience
@@ -335,6 +335,24 @@ Absent le vendredi pour cause de temps partiel</textarea>
                                 <img style="height: 150px;" src="https://signature.provelo.org/signature/images/2017/be_16.png" height="150" alt="Bike Experience. Une experience inoubliable."/>
                                 </a>
 				</div>
+                        </div>
+
+			<input type="checkbox" name="logo" id="form-logo-voeux-2023" value="Voeux2023" onclick="updateLogos()">Voeux 2023
+                        <div id="div-logo-fete" style="display:none">
+                                <div class="logoCampagne" style="float: left;">
+				<a href="https://www.provelo.org/bonne-annee-2023/">
+                                <img style="height: 150px;" src="https://signature.provelo.org/signature/images/voeux.png" height="150" alt="Meilleurs voeux 2023" moz-do-not-send="false" />
+				</a>
+                                </div>
+                        </div>
+
+			<input type="checkbox" name="logo" id="form-eurovelo" value="eurovelo" onclick="updateLogos()">EuroVelo
+			<div id="div-logo-pv-30-ans" style="display:none">
+				<div class="Eurovelo" style="float: left;">
+				<a href="https://eurovelobelgium.be">
+                                <img style="height: 150px;" src="https://signature.provelo.org/signature/images/Eurovelo.png" height="150" alt="Logo Eurovelo" moz-do-not-send="false"/>
+				</a>
+                        	</div>
                         </div>
 
 
@@ -374,6 +392,7 @@ Absent le vendredi pour cause de temps partiel</textarea>
 
 					<!--<option value="div-banner-bikebrussels">Bike Brussels</option> -->
 					<option value="div-banner-bikeproject">Bike Project</option>
+					<option value="div-banner-boutique-liege">Boutique Liège</option>
 				</select>
 
 
@@ -385,6 +404,14 @@ Absent le vendredi pour cause de temps partiel</textarea>
 						<div>
 						<a href="http://bikebrussels.be/tickets">
 						<img src="https://signature.provelo.org/signature/images/bikebrusselsbanner2018.png" style="width:90%; max-width:620px;" width="620" alt="Ticket gratuit pour Bike Brussels avec le mot de passe PVBB18 - Gratis tickets met promocode PVBB18" moz-do-not-send="true">
+						</a>
+						</div>
+                                        </div>
+
+		  			<div class="bannerCampagne" id="div-banner-boutique-liege" style="display:none">
+						<div>
+						<a href="https://www.provelo.org/services/velos-neufs-par-marques/">
+						<img src="https://signature.provelo.org/signature/images/boutique-liege.png" style="width:90%; max-width:620px;" width="620" alt="Boutique Liege" moz-do-not-send="false">
 						</a>
 						</div>
                                         </div>
@@ -452,6 +479,9 @@ Absent le vendredi pour cause de temps partiel</textarea>
 			</a>
                         <a style="text-decoration: none !important; text-decoration:none;" href="https://www.linkedin.com/company-beta/481776/">
                                 <img style="height: 30px;" src="https://signature.provelo.org/signature/images/LinkedIn.png" height="30" alt="LinkedIn Provelo" />
+			</a>
+                        <a style="text-decoration: none !important; text-decoration:none;" href="https://www.youtube.com/@ProVelo-asbl-vzw">
+                                <img style="height: 30px;" src="https://signature.provelo.org/signature/images/Youtube.png" height="30" alt="YouTube Provelo" />
 			</a>
 
 		</div>
